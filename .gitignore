@@ -72,3 +72,12 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+
+/Binaries
+/DerivedDataCache
+/Intermediate
+/Saved
+*.opensdf
+
+Content/BitAnimationEditor/Projects/**/*
