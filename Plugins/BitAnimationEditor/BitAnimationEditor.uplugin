@@ -1,0 +1,17 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.0.1",
+	"FriendlyName": "BitAnimationEditor",
+	"Description": "Bit Animation Editor Importer",
+	"Category": "Other",
+	"CreatedBy": "Morgondag",
+	"CreatedByURL": "https://morgondag.io",
+	"DocsURL": "https://morgondag.io/bit_animation_editor_documentation.pdf",
+	"MarketplaceURL": "",
+	"SupportURL": "mailto:support@morgondag.io",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}
