@@ -17,8 +17,18 @@ flipbookFactory = unreal.PaperFlipbookFactory()
 blueprintFactory = unreal.BlueprintFactory()
 blueprintFactory.set_editor_property("ParentClass", unreal.Actor)
 
-
 projectName = jsonData["name"].replace(" ", "")
+
+def setupTextureSettings():
+    for asset in jsonData["assets"]:
+        texture = unreal.Texture2D.cast(unreal.EditorAssetLibrary.load_asset("/Game/BitAnimations/"+projectName+"/"+asset["id"].replace(" ", "")))
+        #unreal.TextureRenderTargetFormat.RTF_RGBA8_SRGB
+        texture.set_editor_property("lod_group", unreal.TextureGroup.TEXTUREGROUP_PIXELS2D)
+        texture.set_editor_property("compression_settings", unreal.TextureCompressionSettings.TC_EDITOR_ICON)
+        unreal.EditorAssetLibrary.save_loaded_asset(texture, False)
+
+
+
 
 def createBackground():
     texture = unreal.Texture2D.cast(unreal.EditorAssetLibrary.load_asset("/Game/BitAnimations/"+projectName+"/background"))
@@ -40,7 +50,7 @@ def createBackground():
         0,
     ))
   
-createBackground()
+
 
 def createAssets():
     with unreal.ScopedSlowTask(len(jsonData["assets"]), "Creating Assets") as slow_task:
@@ -98,7 +108,7 @@ def createAssets():
             for animation in animations:
                 print(animation["name"])
                 newFlipbook = unreal.PaperFlipbook.cast(asset_tools.create_asset(str(animation["name"].replace(" ", "")), "/Game/BitAnimations/"+projectName+"/assets/"+id+"/animations".replace(" ", ""), None, flipbookFactory) )
-                newFlipbook.set_editor_property("frames_per_second", float(animation["frameskip"]+16))
+                newFlipbook.set_editor_property("frames_per_second", 45-float(animation["frameskip"]*10))
                 ##frame1.set_editor_property("sprite")
                 animationFrames = []
 
@@ -117,4 +127,11 @@ def createAssets():
     
         slow_task.make_dialog(False)
 
-createAssets()
+
+try:
+    backgroundAsset = unreal.PaperSprite.cast(unreal.EditorAssetLibrary.load_asset("/Game/BitAnimations/"+projectName+"/assets/background"))
+    print("skipping asset pipeline, already generated. To regenerate remote project /assets/ folder")
+except:
+    setupTextureSettings()
+    createAssets()
+    createBackground()
