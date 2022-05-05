@@ -22,7 +22,7 @@ This project contains a Unreal 5 project and plugin to import [Bit Animation Edi
 9. Your sprites will now be configured and Flipbook animations will be created if they dont exist. 
 10. A new assets called ``BitProjectBP`` will be added to your scene!
 
-### 🚀 Faster Itteration
+### 🚀 Faster Iteration 
 1. Edit an already imported project in Bit
 2. Click  ``Export/Export JSON Array``
 3. Generate a new asset (step 7 above).  
